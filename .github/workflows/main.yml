@@ -32,14 +32,13 @@ jobs:
 
       # Step 5: Run SonarQube Analysis
       - name: SonarQube Scan
-        run: |
-          sonar-scanner \
-            -Dsonar.host.url=${{ secrets.SONAR_URL }} \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \
-            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
-            -Dsonar.sources=src/main/java \
-            -Dsonar.tests=src/test/java \
-            -Dsonar.junit.reportPaths=target/surefire-reports \
-            -Dsonar.java.binaries=target/classes \
-            -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
+        run: sonar-scanner
+            -Dsonar.host.url=${{ secrets.SONAR_URL }} 
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }} 
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} 
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} 
+            -Dsonar.sources=src/
+            -Dsonar.junit.reportPaths=target/surefire-reports/
+            -Dsonar.jacoco.reportPaths=target/jacoco.exec
+            -Dsonar.java.checkstyle.reportsPaths=target/checkstyle-results.xml
+            -Dsonar.java.binaries=target/test-classes/com/visualpathit/account

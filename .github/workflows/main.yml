@@ -20,7 +20,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
          distribution: 'temurin' 
-         java-versions: '11'
+         java-version: '11'
 
       # Step 4: Setup SonarQube
       - name: Setup SonarQube

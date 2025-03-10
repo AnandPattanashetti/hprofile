@@ -11,23 +11,30 @@ jobs:
 
       - name: Maven test
         run: mvn test
-        
+
       - name: Run Checkstyle
         run: mvn checkstyle:checkstyle
 
-      # # Step 4: Setup SonarQube
-      # - name: Setup SonarQube
-      #   uses: warchant/setup-sonar-scanner@v7
+      # setup java 11 to be default (sonar-scanner requirement as of 5.x)
+      - name: Set Java 11
+        uses: actions/setup-java@v3
+        with:
+         distribution: 'temurin' 
+         java-versions: '11'
 
-      # # Step 5: Run SonarQube Analysis
-      # - name: SonarQube Scan
-      #   run: sonar-scanner
-      #       -Dsonar.host.url=${{ secrets.SONAR_URL }} 
-      #       -Dsonar.login=${{ secrets.SONAR_TOKEN }} 
-      #       -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} 
-      #       -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} 
-      #       -Dsonar.sources=src/
-      #       -Dsonar.junit.reportPaths=target/surefire-reports/
-      #       -Dsonar.jacoco.reportPaths=target/jacoco.exec
-      #       -Dsonar.java.checkstyle.reportsPaths=target/checkstyle-results.xml
-      #       -Dsonar.java.binaries=target/test-classes/com/visualpathit/account
+      # Step 4: Setup SonarQube
+      - name: Setup SonarQube
+        uses: warchant/setup-sonar-scanner@v7
+
+      # Step 5: Run SonarQube Analysis
+      - name: SonarQube Scan
+        run: sonar-scanner
+            -Dsonar.host.url=${{ secrets.SONAR_URL }} 
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }} 
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} 
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} 
+            -Dsonar.sources=src/
+            -Dsonar.junit.reportPaths=target/surefire-reports/
+            -Dsonar.jacoco.reportPaths=target/jacoco.exec
+            -Dsonar.java.checkstyle.reportsPaths=target/checkstyle-results.xml
+            -Dsonar.java.binaries=target/test-classes/com/visualpathit/account

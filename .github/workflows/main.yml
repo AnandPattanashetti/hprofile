@@ -1,4 +1,4 @@
-name: Hprofile Actions
+name: Hprofile actions by anand 
 on: workflow_dispatch
 
 jobs: 
@@ -26,19 +26,19 @@ jobs:
       - name: Run Checkstyle
         run: mvn checkstyle:checkstyle
 
-      # Step 4: Setup SonarQube
-      - name: Setup SonarQube
-        uses: warchant/setup-sonar-scanner@v7
+      # # Step 4: Setup SonarQube
+      # - name: Setup SonarQube
+      #   uses: warchant/setup-sonar-scanner@v7
 
-      # Step 5: Run SonarQube Analysis
-      - name: SonarQube Scan
-        run: sonar-scanner
-            -Dsonar.host.url=${{ secrets.SONAR_URL }} 
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }} 
-            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} 
-            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} 
-            -Dsonar.sources=src/
-            -Dsonar.junit.reportPaths=target/surefire-reports/
-            -Dsonar.jacoco.reportPaths=target/jacoco.exec
-            -Dsonar.java.checkstyle.reportsPaths=target/checkstyle-results.xml
-            -Dsonar.java.binaries=target/test-classes/com/visualpathit/account
+      # # Step 5: Run SonarQube Analysis
+      # - name: SonarQube Scan
+      #   run: sonar-scanner
+      #       -Dsonar.host.url=${{ secrets.SONAR_URL }} 
+      #       -Dsonar.login=${{ secrets.SONAR_TOKEN }} 
+      #       -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} 
+      #       -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} 
+      #       -Dsonar.sources=src/
+      #       -Dsonar.junit.reportPaths=target/surefire-reports/
+      #       -Dsonar.jacoco.reportPaths=target/jacoco.exec
+      #       -Dsonar.java.checkstyle.reportsPaths=target/checkstyle-results.xml
+      #       -Dsonar.java.binaries=target/test-classes/com/visualpathit/account
